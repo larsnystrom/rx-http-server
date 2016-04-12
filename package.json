@@ -1,6 +1,6 @@
 {
   "name": "rx-http-server",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Reactive HTTP server using RxJS as a thin layer on top of Node's HTTP API.",
   "main": "index.js",
   "scripts": {
