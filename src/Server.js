@@ -11,7 +11,9 @@ module.exports.requestStream = Rx.Observable
     if (process.env.NODE_ENV === 'development') {
       console.log((new Date()).toString(), '[INFO]', o.req.method, o.req.url);
     }
-  });
+  })
+  .publish()
+  .refCount();
 
 module.exports.listen = Rx.Observable
   .fromCallback(server.listen, server);
