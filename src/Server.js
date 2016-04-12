@@ -6,7 +6,12 @@ const http = require('http');
 const server = http.createServer();
 
 module.exports.requestStream = Rx.Observable
-  .fromEvent(server, 'request', (req, res) => ({ req, res }));
+  .fromEvent(server, 'request', (req, res) => ({ req, res }))
+  .tap(o => {
+    if (process.env.NODE_ENV === 'development') {
+      console.log((new Date()).toString(), '[INFO]', o.req.method, o.req.url);
+    }
+  });
 
 module.exports.listen = Rx.Observable
   .fromCallback(server.listen, server);
