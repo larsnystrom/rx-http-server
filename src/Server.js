@@ -8,9 +8,7 @@ const server = http.createServer();
 module.exports.requestStream = Rx.Observable
   .fromEvent(server, 'request', (req, res) => ({ req, res, start: Date.now() }))
   .tap(o => {
-    if (process.env.NODE_ENV === 'development') {
-      console.log((new Date()).toString(), '[INFO]', o.req.method, o.req.url);
-    }
+    console.log((new Date()).toString(), '[INFO]', o.req.method, o.req.url);
   })
   .publish()
   .refCount();
